@@ -2,10 +2,8 @@
 
 one:
   name: MyString
-  email: MyString
-  profile: MyString
+  email: one@mail.com
 
 two:
   name: MyString
-  email: MyString
-  profile: MyString
+  email: nop@mail.com

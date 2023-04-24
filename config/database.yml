@@ -13,6 +13,7 @@ test:
   encoding: unicode
   database: Mail_me_test
   pool: 5
+  host: localhost
   username: gowtham1
   password: Simform@123
 
