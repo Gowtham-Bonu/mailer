@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       UserMailer.with(user: @user).welcome_email.deliver_later
       redirect_to root_path, notice: "user successfully created!"
     else
-      flash.now[:alert] = "User not created!"
+      flash.now[:alert] = [@user.errors.full_messages].join(", ")
       render :new, status: :unprocessable_entity
     end
   end
@@ -23,15 +23,13 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    old_email = @user.email
     if @user.update(user_params)
-      new_email = @user.email
-      if old_email != new_email
-        UserMailer.with(user: @user).email_changed.deliver_now
+      if @user.saved_changes.includes?(:email)
+        UserMailer.with(user: @user).email_changed.deliver_later
       end
       redirect_to root_path, notice: "user successfully updated!"
     else
-      flash.now[:alert] = "User not updated!"
+      flash.now[:alert] = [@user.errors.full_messages].join(", ")
       render :edit, status: :unprocessable_entity
     end
   end

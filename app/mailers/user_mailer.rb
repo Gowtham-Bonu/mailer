@@ -3,12 +3,12 @@ class UserMailer < ApplicationMailer
 
   def welcome_email
     @user = params[:user]
-    mail(to: @user.email, subject: "email launched!!!")
+    mail(to: @user.email, subject: "welcome email!")
   end
 
   def email_changed
     @user = params[:user]
-    mail(to: @user.email, subject: "email has been changed!") do |format|
+    mail(to: @user.email, subject: "email_updated!") do |format|
       format.html { render layout: 'email_layout' }
       format.text
     end
