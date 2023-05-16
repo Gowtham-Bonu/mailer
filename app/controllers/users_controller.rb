@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      if @user.saved_changes.includes?(:email)
+      if @user.saved_changes.include?(:email)
         UserMailer.with(user: @user).email_changed.deliver_later
       end
       redirect_to root_path, notice: "user successfully updated!"
