@@ -1,0 +1,31 @@
+<div class="container" >
+  <div class="card p-5" >
+    <%= form_with model: user do |form| %>
+      <div>
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %><br>
+        <% user.errors.full_messages_for(:name).each do |message| %>
+          <%= message %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :email, class: "form-label" %>
+        <%= form.email_field :email, class: "form-control"  %><br>
+        <% user.errors.full_messages_for(:email).each do |message| %>
+          <%= message %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :profile, class: "form-label" %>
+        <%= form.file_field :image, class: "form-control"  %><br>
+        <% user.errors.full_messages_for(:image).each do |message| %>
+          <%= message %>
+        <% end %>
+      </div>
+
+      <%= form.submit %>
+      <% end %>
+  </div>
+<div>
